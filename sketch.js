@@ -16,9 +16,12 @@ function setup() {
   dog.addImage(dogimg);
   dog.scale = 0.2;
 }
+food;
 
 function draw() {
   background(46, 139, 87);
+
+  //add styles here
   if (keyWentDown(UP_ARROW)) {
     writeStock(foodS);
     dog.addImage(dogimg2);
@@ -33,16 +36,21 @@ function draw() {
   text("You have: " + foodS + " Milk left", 100, 70);
   console.log(foodS);
 }
+
+//function to read and write food stock from database
 function readStock(data) {
   foodS = data.val();
 }
+
+//function to write values in database
 function writeStock(x) {
   if (x <= 0) {
     x = 0;
   } else {
     x = x - 1;
   }
+
   database.ref("/").update({
-    food: x,
+    Food: x,
   });
 }
